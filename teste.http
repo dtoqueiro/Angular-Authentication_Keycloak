@@ -1,0 +1,87 @@
+# config
+#KEYCLOAK_URL=http://localhost:8080/auth
+#REALM=aprime
+
+POST http://localhost:8080/auth/realms/aprime/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+{
+  "username": "daniel.toqueiro",
+  "password": "123",
+  "grant_type": "password",
+  "client_id" : "angular",
+}
+
+
+
+# SAMPLE_CLIENT_ID=angular
+# SAMPLE_CLIENT_SECRET=81b6d22b-4b39-4f79-b30b-01b477ce0d3e
+
+
+# # Get an access token
+
+# export TKN=`curl -XPOST "${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/token" \
+#     -H "Content-Type: application/x-www-form-urlencoded" \
+#     -d "grant_type=client_credentials" \
+#     -d "client_id=${SAMPLE_CLIENT_ID}" \
+#     -d "client_secret=${SAMPLE_CLIENT_SECRET}" |jq -r .access_token`
+
+# echo "access token: ${TKN}"
+
+
+# # Use an access token
+
+# curl -XGET \
+#     "${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/userinfo" \
+#     -H "Accept: application/json" \
+#     -H "Authorization: Bearer ${TKN}" |jq -r
+
+
+# # Revoke an access token
+
+# curl -i -XPOST \
+#     "${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/revoke" \
+#     -H "Content-Type: application/x-www-form-urlencoded" \
+#     -d "client_id=${SAMPLE_CLIENT_ID}" \
+#     -d "client_secret=${SAMPLE_CLIENT_SECRET}" \
+#     -d "token=${TKN}" \
+#     -d "token_type_hint=access_token"
+
+
+# # Try to use the revoked access token
+
+# curl -XGET \
+#     "${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/userinfo" \
+#     -H "Accept: application/json" \
+#     -H "Authorization: Bearer ${TKN}" |jq -r
+# and here is the script output:
+
+# ./sample-rest-calls.zsh
+
+# access token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0NHNtUjZaZlkyVXV0WDlLMUw4em02Vi1YUHRnTlpET2FiTVRoNEFoT3h3In0.eyJleHAiOjE2MjMzOTAzMjAsImlhdCI6MTYyMzM5MDI2MCwianRpIjoiZWQ4OGRhMzMtNmY5NC00MjQ5LWJkYzEtZWRlNjY2MmM2ZmU2IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6Ijc5ZjA3YmIyLTI4MGMtNGY2OC05ZWVlLTEzOWU3NDc4NmYxNSIsInR5cCI6IkJlYXJlciIsImF6cCI6InNhbXBsZS1tMm0tY2xpZW50IiwiYWNyIjoiMSIsInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImNsaWVudEhvc3QiOiIxMjcuMC4wLjEiLCJjbGllbnRJZCI6InNhbXBsZS1tMm0tY2xpZW50IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtc2FtcGxlLW0ybS1jbGllbnQiLCJjbGllbnRBZGRyZXNzIjoiMTI3LjAuMC4xIn0.jyDM6CVmJn9rIT8ZlrVX03kCJNGolMJHeYHle8T61PQB4s0UrnyOnpiP8eRAhXE6wJh6bFyhcv5EgtTPNVK07vmEtkYY__YXlPJovYW2p4KassntnxWD1GbantVlIS3_F3ca032LX4r3OgxKp9fgaLSx4uVHaf_ZAYcLmtrQ7vDRo8RsAEunoUt840KeQKFRayie7NQZcscT5_wCzHK1tSFKK3b4axcslxRaXUlpxtxwxQsMVRlBL_1Ft4e7YTmakhjnvr4oKjwaX36RZJIOF6rXX00HGbb7BLrwFVprh-Vsnp2z0KjcJTYSpfwG5KWnGkSVuUzFeygwGUj6eA1Szg
+
+# {
+#   "sub": "79f07bb2-280c-4f68-9eee-139e74786f15",
+#   "email_verified": false,
+#   "preferred_username": "service-account-sample-m2m-client"
+# }
+
+# HTTP/1.1 100 Continue
+# Content-Length: 0
+
+# HTTP/1.1 200 OK
+# X-XSS-Protection: 1; mode=block
+# X-Frame-Options: SAMEORIGIN
+# Referrer-Policy: no-referrer
+# Content-Security-Policy: frame-src 'self'; frame-ancestors 'self'; object-src 'none';
+# Date: Fri, 11 Jun 2021 05:44:20 GMT
+# Connection: keep-alive
+# X-Robots-Tag: none
+# Strict-Transport-Security: max-age=31536000; includeSubDomains
+# X-Content-Type-Options: nosniff
+# Content-Length: 0
+
+# {
+#   "sub": "79f07bb2-280c-4f68-9eee-139e74786f15",
+#   "email_verified": false,
+#   "preferred_username": "service-account-sample-m2m-client"
+# }
