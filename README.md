@@ -1,27 +1,17 @@
-# AngularAuth
+# Sample Angular authentication with Keycloak server
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+Angular sample authentication project using [keycloak-angular](https://github.com/mauriciovigolo/keycloak-angular) adapter
 
-## Development server
+## Requisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A running keycloak server.
 
-## Code scaffolding
+Refer to Keycloak [doccumentation](https://www.keycloak.org/getting-started) to find out how to run your own server.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Configuration
 
-## Build
+Change the **src/app/helpers/app.init.ts** file to point to your Keycloak server configuration:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Change the values of url, real and clientId to reflect your Keycloak configuration, view Keycloak docs if you don't know how to configure this.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This code expect users with roles **Financeiro** and **RH** change the code of file **src/app/app-routting.module.ts** to adjust to your own roles.
